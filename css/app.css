@@ -56,3 +56,46 @@
   form .input-field {
     margin-top: 30px;
   }
+
+  /*Adjustments to screen sizes*/
+
+  .container {
+    max-width: 100%;
+  }
+
+  .container h2 {
+    font-size: 2.5rem;
+  }
+
+  .container img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .container p {
+    font-size: 1rem;
+  }
+
+  .container a.btn {
+    margin-top: 20px;
+  }
+
+h2 {
+  font-size: 3rem;
+}
+
+@media only screen and (max-width: 600px) {
+  h2 {
+      font-size: 2rem;
+  }
+}
+
+.nav-wrapper .brand-logo {
+  font-size: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-wrapper .brand-logo {
+      font-size: 1rem;
+  }
+}

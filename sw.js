@@ -49,7 +49,7 @@ const assets = [
       caches.keys().then((keys) => {
         return Promise.all(
           keys
-            .filter((key) => key !== staticCache)
+            .filter((key) => key !== staticCache && key !== dynamicCache)
             .map((key) => caches.delete(key))
         );
       })
