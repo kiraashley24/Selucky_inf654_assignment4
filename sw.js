@@ -26,6 +26,17 @@ const assets = [
     "https://fonts.googleapis.com/icon?family=Material+Icons",
   ];
   
+  //Cache size limit
+  const limitCacheSize = (name, size) => {
+    caches.open(name).then((cache) => {
+      cache.keys().then((keys) => {
+        if (keys.length > size) {
+          cache.delete(keys[0]).then(limitCacheSize(name, size));
+        }
+      })
+    })
+  }
+
   self.addEventListener("install", function (event) {
     //fires when the browser install the app
     //here we're just logging the event and the contents of the object passed to the event.
@@ -69,6 +80,7 @@ const assets = [
             fetch(event.request).then((fetchRes) => {
               return caches.open(dynamicCache).then((cache) => {
                 cache.put(event.request.url, fetchRes.clone());
+                limitCacheSize(dynamicCache, 3);
                 return fetchRes;
               });
             })
