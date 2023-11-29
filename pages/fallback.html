@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="/css/materialize.min.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="manifest" href="/manifest.json">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/app.css">
     <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
 </head>
 
 <body class="teal lighten-5">
@@ -41,42 +41,13 @@
         <li><div class="divider"></div></li>
         <li><a href="/pages/reviews.html">Reviews<i class="material-icons">chat_bubble</i></a></li>
     </ul>
-    
-    <h2 class="center-align blue-grey-text text-darken-3">Reviews</h2>
 
-    <div class="review container grey-text text-darken-4" id="reviews-container">
-    </div>
-                    
-            <!--Can do btn disabled to not allow to press button until form is filled out-->
-        <div class="center">
-            <a class="btn-floating btn-small teal sidenav-trigger" data-target="side-form">
-                <i class="material-icons">add</i>
-            </a>
-        </div>
+    <div class="container grey-text center">
+        <h5>OOPS!</h5>
+        <p>Currently you cannot view this page offline</p>
+        <a href="/" class="btn-small orange">Go to Homepage</a>
     </div>
 
-    <div id="side-form" class="sidenav side-form">
-        <form class="add-review container section">
-            <h6 class="center-align blue-grey-text text-darken-3">Review</h6>
-            <div class="divider"></div>
-            <div class="input-field">
-                <input placeholder="Enter review title" id="title" class="validate" type="text">
-                 <label for="title">Review Title</label>
-            </div>
-            <div class="input-field">
-                <input placeholder="Enter review description" id="description" class="validate" type="text">
-                <label for="title">Review Description</label>
-            </div>
-
-            <div class="input-field center">
-                <button class="btn-small">Add</button>
-            </div>
-    </div>
-    </form>
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="module" src="/js/db.js"></script>
     <script src="/js/ui.js"></script>
-    <script src="/js/app.js"></script>
 </body>
+</html>

@@ -20,3 +20,4 @@ if ("serviceWorker" in navigator) {
     // or if the browser doesn't support the service worker
     console.log("Service Worker not available");
   }
+

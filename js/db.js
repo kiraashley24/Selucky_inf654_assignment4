@@ -1,7 +1,13 @@
-
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, onSnapshot, } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"
+  import { 
+    getFirestore, 
+    collection, 
+    getDocs, 
+    onSnapshot, 
+    addDoc,
+    deleteDoc,
+    doc,
+   } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -25,8 +31,36 @@
   }
 
   const unsub = onSnapshot(collection(db, "reviews"), (doc) => {
-   // console.log(doc.docChanges());
-   doc.docChanges().forEach((change) => {
-    console.log(change, change.doc.data(), change.doc.id);
-   });
-});
+    //   console.log(doc.docChanges());
+    doc.docChanges().forEach((change) => {
+      // console.log(change, change.doc.data(), change.doc.id);
+      if (change.type === "added") {
+        //Call render function in UI
+        renderReview(change.doc.data(), change.doc.id);
+      }
+      if (change.type === "removed") {
+        //do something
+        removeReview(change.doc.id);
+      }
+    });
+  });
+
+  //add new review
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (event) => {
+      event.preventDefault();
+  
+      addDoc(collection(db, "reviews"), {
+          title: form.title.value,
+          description: form.description.value,
+      }).catch((error) => console.log(error));
+
+      //close form
+      const sideFormInstance = M.Sidenav.getInstance(document.getElementById("side-form"));
+      sideFormInstance.close();
+      
+      form.title.value = "";
+      form.description.value = "";
+  });
+
+  
