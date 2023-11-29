@@ -30,16 +30,22 @@
     margin-top: 20px;
   }
 
-  .review-details {
-    grid-area: details;
+  .review-detail {
     margin-top: 6px;
+    display: flex;
+    align-items: center;
   }
-  .review-delete {
-    grid-area: delete;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+  .review-detail img {
+    margin-right: 15px;
   }
+  .review-title {
+    font-size: 1.2rem; /* Adjust the font size as needed */
+    font-weight: bold;
+  }
+  .review-description {
+    font-size: 1rem; /* Adjust the font size as needed */
+  }
+
 
   /* form-styles */
   .add-btn {

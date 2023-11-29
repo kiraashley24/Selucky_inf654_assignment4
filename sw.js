@@ -33,9 +33,9 @@ const assets = [
         if (keys.length > size) {
           cache.delete(keys[0]).then(limitCacheSize(name, size));
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   self.addEventListener("install", function (event) {
     //fires when the browser install the app
