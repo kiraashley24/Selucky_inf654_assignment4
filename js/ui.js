@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
     M.Collapsible.init(items);
 });
 
-const reviews = document.querySelector("#reviews-container");
+const reviewsContainer = document.querySelector("#reviews-container");
 const loggedOutLinks = document.querySelectorAll(".logged-out");
 const loggedInLinks = document.querySelectorAll(".logged-in");
 
@@ -90,7 +90,7 @@ const setupReviews = (data) => {
         html += li;
     });
 
-    reviews.innerHTML = html;
+    reviewsContainer.innerHTML = html;
     
 };
 
@@ -109,7 +109,7 @@ const renderReview = (data, id) => {
         </div>
     </div>`;
 
-    reviews.innerHTML += html;
+    reviewsContainer.innerHTML += html;
 };
 
   //remove review from DOM

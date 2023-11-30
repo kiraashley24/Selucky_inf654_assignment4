@@ -22,15 +22,24 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
   //listen for auth status changes
-onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, (user) => {
     // Check for user status
     // console.log(user);
+    const reviewsContainer = document.getElementById("reviews-container");
+  
     if (user) {
+      // User is logged in
       console.log("User log in: ", user.email);
+  
+      // Show the reviews container
+      reviewsContainer.style.display = "block";
+  
       getReviews(db).then((snapshot) => {
         setupReviews(snapshot);
       });
+  
       setupUI(user);
+  
       const form = document.querySelector("form");
       form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -39,37 +48,21 @@ onAuthStateChanged(auth, (user) => {
           title: form.title.value,
           description: form.description.value,
         }).catch((error) => console.log(error));
+  
         form.title.value = "";
         form.description.value = "";
       });
     } else {
-      // console.log("User Logged out");
+      // User is logged out
+      console.log("User Logged out");
+  
+      // Hide the reviews container
+      reviewsContainer.style.display = "none";
+  
       setupUI();
       setupReviews([]);
     }
   });
-
-//signup
-const signupForm = document.querySelector("#signup-form");
-signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    //get user info
-    const email = signupForm["signup-email"].value;
-    const password = signupForm["signup-password"].value;
-createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        //signed in
-        const user = userCredential.user;
-        console.log(user);
-        const modal = document.querySelector("#modal-signup");
-        M.Modal.getInstance(modal).close();
-        signupForm.reset();
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-    });
-});
 
 //Logout
 const logout = document.querySelector("#logout");

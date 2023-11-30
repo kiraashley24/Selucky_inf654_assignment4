@@ -81,8 +81,8 @@ form.addEventListener("submit", (event) => {
 });
 
 //delete review
-const reviewContainer = document.querySelector("#reviews-container");
-reviewContainer.addEventListener("click", (event) => {
+const reviewsContainer = document.querySelector("#reviews-container");
+reviewsContainer.addEventListener("click", (event) => {
   if (event.target.tagName === "I") {
     const id = event.target.getAttribute("data-id");
     deleteDoc(doc(db, "reviews", id));
