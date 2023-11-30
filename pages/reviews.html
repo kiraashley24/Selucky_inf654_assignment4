@@ -52,10 +52,10 @@
         <li class="logged-out">
             <a href="#" class="waves-effect modal-trigger" data-target="modal-signup">Sign up</a>
         </li>
-        </span>
     </ul>
     
     <h2 class="center-align blue-grey-text text-darken-3">Reviews</h2>
+    <h6 class="center-align blue-grey-text"><i>**Please Login or Sign up for review access.**</i></h6>
 
     <div class="review container grey-text text-darken-4" id="reviews-container">
     </div>
@@ -85,6 +85,47 @@
                 <button class="btn-small">Add</button>
             </div>
         </form>
+    </div>
+    <!--SIGN UP MODAL-->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Sign Up</h4>
+            <form id="signup-form">
+                <div class="input-field">
+                    <input type="email" id="signup-email" required>
+                    <label for ="signup-email">Email Address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="signup-password" required>
+                    <label for ="signup-password">Choose Password</label>
+                </div>
+                <button class="btn yellow text-darken-2 z-depth-0">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4><br />
+            <form id="login-form">
+                <div class="input-field">
+                    <input type="email" id="login-email" required />
+                    <label for="login-email">Email address</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" id="login-password" required />
+                    <label for="login-password">Your password</label>
+                </div>
+                <button class="btn yellow darken-2 z-depth-0">Login</button>
+            </form>
+        </div>
+    </div>
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+            <h4>Account details</h4><br />
+            <div class="account-details"></div>
+        </div>
     </div>
 
     <!-- Compiled and minified JavaScript -->
