@@ -6,7 +6,7 @@
     --title: #e0f2f1;
   }
   
-  /* layout styles */
+  /* nav layout styles */
   nav {
     background: var(--primary);
     border-bottom: 10px solid var(--secondary);
@@ -25,6 +25,7 @@
   .circle-list {
     list-style-type: circle;
   } 
+  
   /* review styles */
   .review {
     margin-top: 20px;
@@ -33,17 +34,30 @@
   .review-detail {
     margin-top: 6px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
   .review-detail img {
     margin-right: 15px;
   }
   .review-title {
-    font-size: 1.2rem; /* Adjust the font size as needed */
+    font-size: 1.2rem; 
     font-weight: bold;
   }
   .review-description {
-    font-size: 1rem; /* Adjust the font size as needed */
+    font-size: 1rem; 
+  }
+
+  .review-delete {
+      margin-left: auto;
+  }
+  
+  .review-delete:hover i {
+    color: red;
+  }
+
+  .review-delete:active i {
+      color: red;
   }
 
 

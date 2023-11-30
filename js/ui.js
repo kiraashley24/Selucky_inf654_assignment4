@@ -19,8 +19,18 @@ const renderReview = (data, id) => {
                 <div class="review-title">${data.title}</div>
                 <div class="review-description">${data.description}</div>
             </div>
+            <div class="review-delete">
+                <i class="material-icons hoverable" data-id ="${id}">delete_outline</i>
+            </div>
         </div>
     </div>`;
 
     reviews.innerHTML += html;
 };
+
+  //remove review from DOM
+  const removeReview = (id) => {
+    const review = document.querySelector(`.review[data-id ='${id}']`);
+    // console.log(review);
+    review.remove();
+  };

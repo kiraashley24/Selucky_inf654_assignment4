@@ -58,9 +58,16 @@
       //close form
       const sideFormInstance = M.Sidenav.getInstance(document.getElementById("side-form"));
       sideFormInstance.close();
-      
+
       form.title.value = "";
       form.description.value = "";
   });
 
-  
+  //delete review
+  const reviewContainer = document.querySelector("#reviews-container");
+  reviewContainer.addEventListener("click", (event) => {
+    if (event.target.tagName === "I") {
+      const id = event.target.getAttribute("data-id");
+      deleteDoc(doc(db, "reviews", id));
+    }
+  });
