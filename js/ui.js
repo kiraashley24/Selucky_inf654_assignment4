@@ -1,3 +1,12 @@
+// setup materialize components
+document.addEventListener("DOMContentLoaded", function(){
+    var modals = document.querySelectorAll(".modal");
+    M.Modal.init(modals);
+
+    var items = document.querySelectorAll(".collapsible");
+    M.Collapsible.init(items);
+});
+
 const reviews = document.querySelector("#reviews-container");
 
 //Telling the page to load DOM content first, then JS
@@ -34,3 +43,5 @@ const renderReview = (data, id) => {
     // console.log(review);
     review.remove();
   };
+
+

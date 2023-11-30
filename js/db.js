@@ -7,6 +7,7 @@
     addDoc,
     deleteDoc,
     doc,
+    enableIndexedDbPersistence,
    } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"
 
   // Your web app's Firebase configuration
@@ -29,6 +30,21 @@
     const reviewList = reviewSnapshot.docs.map((doc) => doc);
     return reviewList;
   }
+
+  enableIndexedDbPersistence(db)
+    .catch((err) => {
+      if (err.code == 'failed-precondition') {
+        // Multiple tabs open, persistence can only be enabled
+        // in one tab at a a time.
+        console.log('Persistence failed');
+      } else if (err.code == 'unimplemented') {
+        // The current browser does not support all of the
+        // features required to enable persistence
+        console.log('Persistence is not valid');
+      }
+    });
+
+  
 
   const unsub = onSnapshot(collection(db, "reviews"), (doc) => {
     //   console.log(doc.docChanges());

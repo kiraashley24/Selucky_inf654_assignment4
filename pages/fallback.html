@@ -38,8 +38,21 @@
         <li><a href="/pages/breakfast.html">Breakfast<i class="material-icons">local_cafe</i></a></li>
         <li><a href="/pages/dinner.html">Dinner<i class="material-icons">local_dining</i></a></li>
         <li><a href="/pages/dessert.html">Dessert<i class="material-icons">cake</i></a></li>
-        <li><div class="divider"></div></li>
         <li><a href="/pages/reviews.html">Reviews<i class="material-icons">chat_bubble</i></a></li>
+        <li><div class="divider"></div></li>
+        <li class="logged-in">
+            <a href="#" class="waves-effect modal-trigger" data-target="modal-account">Account</a>
+        </li>
+        <li class="logged-in">
+            <a href="#" class="waves-effect" id="logout">Logout</a>
+        </li>
+        <li class="logged-out">
+            <a href="#" class="waves-effect modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out">
+            <a href="#" class="waves-effect modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
+        </span>
     </ul>
 
     <div class="container grey-text center">
@@ -49,5 +62,6 @@
     </div>
 
     <script src="/js/ui.js"></script>
+    <script type="module" src="/js/auth.js"></script>
 </body>
 </html>
