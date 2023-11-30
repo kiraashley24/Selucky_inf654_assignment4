@@ -8,7 +8,8 @@
     deleteDoc,
     doc,
     enableIndexedDbPersistence,
-   } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"
+   } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+   import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -23,6 +24,7 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  const auth = getAuth(app);
 
   async function getReviews(db) {
     const reviewsCol = collection(db, "reviews");
@@ -62,7 +64,7 @@
   });
 
   //add new review
-  const form = document.querySelector("form");
+  /*const form = document.querySelector("form");
   form.addEventListener("submit", (event) => {
       event.preventDefault();
   
@@ -77,7 +79,7 @@
 
       form.title.value = "";
       form.description.value = "";
-  });
+  });*/
 
   //delete review
   const reviewContainer = document.querySelector("#reviews-container");
@@ -87,3 +89,31 @@
       deleteDoc(doc(db, "reviews", id));
     }
   });
+
+  //listen for auth status changes
+onAuthStateChanged(auth, (user) => {
+  // Check for user status
+  // console.log(user);
+  if (user) {
+    console.log("User log in: ", user.email);
+    getReviews(db).then((snapshot) => {
+      setupReviews(snapshot);
+    });
+    setupUI(user);
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      addDoc(collection(db, "tasks"), {
+        title: form.title.value,
+        description: form.description.value,
+      }).catch((error) => console.log(error));
+      form.title.value = "";
+      form.description.value = "";
+    });
+  } else {
+    // console.log("User Logged out");
+    setupUI();
+    setupReviews([]);
+  }
+});

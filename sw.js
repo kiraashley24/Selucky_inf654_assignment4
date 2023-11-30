@@ -1,5 +1,5 @@
-const staticCache = 'Static-cache-v8';
-const dynamicCache = 'Dynamic-cache-v8';
+const staticCache = 'Static-cache-v14';
+const dynamicCache = 'Dynamic-cache-v14';
 
 const assets = [
     "/",

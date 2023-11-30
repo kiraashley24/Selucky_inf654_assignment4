@@ -5,7 +5,7 @@ import {
     signOut, 
     signInWithEmailAndPassword, 
     onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,7 +21,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
 //signup
 const signupForm = document.querySelector("#signup-form");
 signupForm.addEventListener("submit", (e) => {
@@ -35,11 +34,41 @@ createUserWithEmailAndPassword(auth, email, password)
         const user = userCredential.user;
         console.log(user);
         const modal = document.querySelector("#modal-signup");
-        Map.Modal.getInstance(modal).close();
+        M.Modal.getInstance(modal).close();
         signupForm.reset();
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
     });
-})
+});
+
+//Logout
+const logout = document.querySelector("#logout");
+logout.addEventListener("click", (e)=>{
+    e.preventDefault;
+    signOut(auth).then(()=>{
+        console.log("User has signed out");
+    }).catch((error)=>{
+        //error happened
+    });
+});
+
+//Login
+const loginForm = document.querySelector("#login-form");
+loginForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const email = loginForm["login-email"].value;
+    const password = loginForm["login-password"].value;
+    signInWithEmailAndPassword(auth, email, password).then((userCredential)=>{
+        //signed in
+        const user = userCredential.user;
+        console.log(user);
+        const modal = document.querySelector("#modal-signup");
+        M.Modal.getInstance(modal).close();
+        signupForm.reset();
+    }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+    });
+});
