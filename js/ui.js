@@ -118,5 +118,3 @@ const renderReview = (data, id) => {
     // console.log(review);
     review.remove();
   };
-
-
