@@ -21,6 +21,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+  //listen for auth status changes
+onAuthStateChanged(auth, (user) => {
+    // Check for user status
+    // console.log(user);
+    if (user) {
+      console.log("User log in: ", user.email);
+      getReviews(db).then((snapshot) => {
+        setupReviews(snapshot);
+      });
+      setupUI(user);
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+  
+        addDoc(collection(db, "reviews"), {
+          title: form.title.value,
+          description: form.description.value,
+        }).catch((error) => console.log(error));
+        form.title.value = "";
+        form.description.value = "";
+      });
+    } else {
+      // console.log("User Logged out");
+      setupUI();
+      setupReviews([]);
+    }
+  });
+
 //signup
 const signupForm = document.querySelector("#signup-form");
 signupForm.addEventListener("submit", (e) => {
@@ -46,7 +74,7 @@ createUserWithEmailAndPassword(auth, email, password)
 //Logout
 const logout = document.querySelector("#logout");
 logout.addEventListener("click", (e)=>{
-    e.preventDefault;
+    e.preventDefault();
     signOut(auth).then(()=>{
         console.log("User has signed out");
     }).catch((error)=>{
