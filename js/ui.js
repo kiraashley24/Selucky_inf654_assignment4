@@ -12,52 +12,17 @@ const loggedOutLinks = document.querySelectorAll(".logged-out");
 const loggedInLinks = document.querySelectorAll(".logged-in");
 
 const setupUI = (user) => {
-    const collapsibles = document.querySelectorAll(".collapsible");
-    const modals = document.querySelectorAll(".modal");
-
     if (user) {
         // User is logged in
-        collapsibles.forEach((item) => {
-            // Show collapsibles
-            const collapsibleInstance = M.Collapsible.getInstance(item);
-            collapsibleInstance.open();
-        });
-
-        modals.forEach((item) => {
-            // Close modals
-            const modalInstance = M.Modal.getInstance(item);
-            modalInstance.close();
-        });
-
-        // Hide elements with class 'logged-out'
-        document.querySelectorAll(".logged-out").forEach((item) => {
-            item.style.display = "none";
-        });
-
-        // Show elements with class 'logged-in'
-        document.querySelectorAll(".logged-in").forEach((item) => {
-            item.style.display = "block";
-        });
+        loggedOutLinks.forEach(link => link.style.display = 'none');
+        loggedInLinks.forEach(link => link.style.display = 'block');
     } else {
         // User is logged out
-        collapsibles.forEach((item) => {
-            // Close collapsibles
-            const collapsibleInstance = M.Collapsible.getInstance(item);
-            collapsibleInstance.close();
-        });
-
-        // Hide elements with class 'logged-in'
-        document.querySelectorAll(".logged-in").forEach((item) => {
-            item.style.display = "none";
-        });
-
-        // Show elements with class 'logged-out'
-        document.querySelectorAll(".logged-out").forEach((item) => {
-            item.style.display = "block";
-        });
+        loggedOutLinks.forEach(link => link.style.display = 'block');
+        loggedInLinks.forEach(link => link.style.display = 'none');
     }
 };
-0
+
 
 //Telling the page to load DOM content first, then JS
 document.addEventListener("DOMContentLoaded", function() {
